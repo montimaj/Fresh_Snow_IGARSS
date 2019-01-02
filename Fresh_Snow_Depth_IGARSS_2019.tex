@@ -38,7 +38,7 @@
 %
 % Single address.
 % ---------------
-\name{Sayantan Majumdar\textsuperscript{1,2} \orcidicon{0000-0002-3539-0147}, Praveen K. Thakur\textsuperscript{3}, Ling Chang\textsuperscript{1}, Shashi Kumar\textsuperscript{4}}
+\name{Sayantan Majumdar\textsuperscript{1,2} \orcidicon{0000-0002-3539-0147}\,, Praveen K. Thakur\textsuperscript{3}, Ling Chang\textsuperscript{1}, Shashi Kumar\textsuperscript{4}}
 \address{\textsuperscript{1}Department of Earth Observation Science, Faculty of Geo-information Science and Earth Observation\\ (ITC), University of Twente, Enschede, The Netherlands\\
 \textsuperscript{2}Geoinformatics Department, Indian Institute of Remote Sensing (IIRS), ISRO, Dehradun, India\\
 \textsuperscript{3}Water Resources Department, Indian Institute of Remote Sensing (IIRS), ISRO, Dehradun, India \\
@@ -116,7 +116,7 @@ The steps involved in this research workflow are depicted in figure \ref{fig:wor
 
 At first, the CoSSC product has been split into separate TerraSAR-X, and TANDEM-X images and then radiometric calibration has been applied. After subsetting these images, the CPDs are computed individually using \eqref{1} where $\Im$ and $\Re$ denote the imaginary and real parts of the complex scattering matrices $S_{VV}$ and $S_{HH}$ respectively ($\phi_{VV}$ and $\phi_{HH}$ representing the corresponding phases), $\langle\rangle$ denoting the ensemble averaging operation. These are subsequently averaged to a single CPD image. Thereafter, terrain correction is performed using the ALOS PALSAR DEM where the local incidence angle (LIA) is also stored as an image band alongside CPD.
 
-The geocoded CPD image (3 m spatial resolution) is then used as an input to the FSD estimation module written in Python. Initially, the CPD values are averaged based on an ensemble window of 21x21 pixels ($\approx$4 km\textsuperscript{2} ground area). The FSD ($\Delta Z_f$) inversion model is given by \eqref{2} where the CPD ($\phi_{CPD}\in[-\pi,\pi]$), radar wavelength ($\lambda_0$), LIA ($\theta_l$), and the two snow refractive indices, $n_V$ and $n_H$ (corresponding to the two polarisations VV and HH respectively) are the involved parameters. In this regard, it has been found that for fresh snow,  $\phi_{CPD}>0$ and $n_H>n_V$, i.e., $\Delta{\zeta}<1$ \cite{Leinss2014}.
+The geocoded CPD image (3 m spatial resolution) is then used as an input to the FSD estimation module written in Python. Initially, the CPD values are averaged based on an ensemble window of 5x5 pixels (225 m\textsuperscript{2} ground area). The FSD ($\Delta Z_f$) inversion model is given by \eqref{2} where the CPD ($\phi_{CPD}\in[-\pi,\pi]$), radar wavelength ($\lambda_0$), LIA ($\theta_l$), and the two snow refractive indices, $n_V$ and $n_H$ (corresponding to the two polarisations VV and HH respectively) are the involved parameters. In this regard, it has been found that for fresh snow,  $\phi_{CPD}>0$ and $n_H>n_V$, i.e., $\Delta{\zeta}<1$ \cite{Leinss2014}.
 \AfterEndEnvironment{figure}{\vspace{2.5ex}}
 \begin{figure}[htb]
 \centering
