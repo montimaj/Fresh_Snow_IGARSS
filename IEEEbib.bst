@@ -237,7 +237,7 @@ FUNCTION {format.names}
 		'skip$
 	      if$
 	      t "others" =
-		{ " et~al." * }
+		{ " \emph{et~al.}" * }
 		{ " and " * t * }
 	      if$
 	    }
