@@ -76,11 +76,11 @@ In addition to this, the snow metamorphism induced anisotropy and snow density a
 
 In principle, the three orthogonal axes ($a_x$, $a_y$, $a_z$) of a spheroid represented in the 3D ($x$, $y$, $z$) Cartesian coordinate system correspond to the three dipoles which essentially characterise the dielectric nature of an ice particle. This is highlighted in figure \ref{fig:prolate}, where a prolate ice particle is linked with the radar reference frame ($h$, $k$, $v$) following the radar backscattering alignment (BSA) convention. Here, $k$, $h$ and $v$ are the propagation vector, wave components of the horizontal and vertical polarisations respectively, $\theta$ being the satellite incidence angle obtained with respect to the surface normal \cite{Leinss2014}.
 
-\AfterEndEnvironment{figure}{\vspace{-1ex}}
+\AfterEndEnvironment{figure}{\vspace{-1.5ex}}
 \begin{figure}[htb]
 \centering
-\includegraphics[scale=0.14]{Prolate_New.png}
-\vspace{-2ex}
+\includegraphics[scale=0.2]{Prolate_New.png}
+\vspace{-1.5ex}
 \caption{The orientation of a single prolate ice particle linked with the radar reference frame (adapted from \cite{Leinss2014}).}
 \label{fig:prolate}
 \end{figure}
@@ -93,10 +93,10 @@ Furthermore, the depolarisation factor is an important component to model the sn
 \label{ssec:area}
 The Beas river watershed near Manali, India is characterised by steep slopes and dense forests. The elevation varies from about 2500 m to more than 5000 m (figure \ref{fig:overview}). In this work, the Beas basin, starting from a few kilometres uphill from Dhundi up to Kothi (figure \ref{fig:overview}) has been chosen for FSD estimation. The areas surrounding Dhundi and Kothi receive significant seasonal snowfall usually from the onset of December to late March. However, the cold, dry season starts from as early as October. The coldest period is in January with temperatures reaching a mean daily minimum of -15\textsuperscript{0}C whereas, in June, mean and maximum temperatures of 20\textsuperscript{0}C and 30\textsuperscript{0}C respectively are commonly observed. Additionally, heavy rainfall occurs in the monsoon season (late June-September) with August being the wettest month \cite{Thakur2012}. In total, an area of approximately 66 km\textsuperscript{2} is depicted in Figure \ref{fig:overview} showing ALOS PALSAR digital elevation model (DEM). Here, the original 12.5 m DEM has been resampled to 3 m to match the high-resolution SAR data used in this research. 
 
-\AfterEndEnvironment{figure}{\vspace{-3.5ex}}
+\AfterEndEnvironment{figure}{\vspace{-1.5ex}}
 \begin{figure}[htb]
 \centering
-\includegraphics[scale=0.14]{Overview.png}
+\includegraphics[width=8.5cm]{Overview.png}
 \vspace{-2ex}
 \caption{The overview map of the study area showing the ALOS PALSAR DEM, Dhundi and Kothi ground stations.}
 \label{fig:overview}
@@ -112,19 +112,9 @@ Apart from this, a Landsat 8 OLI acquisition over the study area on May 12, 2016
 
 \section{Methodology}
 \label{sec:method}
-The steps involved in this research workflow are depicted in figure \ref{fig:work}. All the processing tasks have been carried out using open-source tools and libraries which include the Sentinel Application Platform (SNAP), QGIS and Python.
-
-At first, the CoSSC product has been split into separate TerraSAR-X, and TANDEM-X images and then radiometric calibration has been applied. After subsetting these images, the CPDs are computed individually using \eqref{1} where $\Im$ and $\Re$ denote the imaginary and real parts of the complex scattering matrices $S_{VV}$ and $S_{HH}$ respectively ($\phi_{VV}$ and $\phi_{HH}$ representing the corresponding phases), $\langle\rangle$ denoting the ensemble averaging operation. These are subsequently averaged to a single CPD image. Thereafter, terrain correction is performed using the ALOS PALSAR DEM where the local incidence angle (LIA) is also stored as an image band alongside CPD.
+At first, the CoSSC product has been split into separate TerraSAR-X, and TANDEM-X images and then radiometric calibration has been applied. After subsetting these images, the CPDs are computed individually using \eqref{1} where $\Im$ and $\Re$ denote the imaginary and real parts of the complex scattering matrices $S_{VV}$ and $S_{HH}$ respectively ($\phi_{VV}$ and $\phi_{HH}$ representing the corresponding phases), $\langle\rangle$ denoting the ensemble averaging operation. These are subsequently averaged to a single CPD image. Thereafter, terrain correction is performed using the ALOS PALSAR DEM where the local incidence angle (LIA) is also stored as an image band alongside CPD. 
 
 The geocoded CPD image (3 m spatial resolution) is then used as an input to the FSD estimation module written in Python. Initially, the CPD values are averaged based on an ensemble window of 5x5 pixels (225 m\textsuperscript{2} ground area). The FSD ($\Delta Z_f$) inversion model is given by \eqref{2} where the CPD ($\phi_{CPD}\in[-\pi,\pi]$), radar wavelength ($\lambda_0$), LIA ($\theta_l$), and the two snow refractive indices, $n_V$ and $n_H$ (corresponding to the two polarisations VV and HH respectively) are the involved parameters. In this regard, it has been found that for fresh snow,  $\phi_{CPD}>0$ and $n_H>n_V$, i.e., $\Delta{\zeta}<1$ \cite{Leinss2014}.
-\AfterEndEnvironment{figure}{\vspace{2.5ex}}
-\begin{figure}[htb]
-\centering
-\includegraphics[scale=0.14]{Method_FSD.png}
-\vspace{-2ex}
-\caption{The research workflow highlighting the major tasks.}
-\label{fig:work}
-\end{figure}
 
 Essentially, \eqref{2} is based on the underlying Maxwell-Garnett EM mixture model and the depolarisation factor equations, a detailed treatment of which is provided by \cite{Sihvola1999}. The estimated FSD values are further averaged using different square and rectangular ensemble windows after which the final map is prepared in QGIS.
 
@@ -147,7 +137,7 @@ Essentially, \eqref{2} is based on the underlying Maxwell-Garnett EM mixture mod
 \end{equation*}
 
 
-In addition to this, the layover, shadow (SAR simulation) and forest masks (NDVI thresholding) are generated (3 m spatial resolution) to assess the potential uncertainty sources qualitatively. Moreover, the H-A-$\alpha$ decomposition and unsupervised Wishart classification techniques have been used to compare the scattering mechanisms in the study sites during snow-covered (Jan 8, 2016) and snow-free (Jun 8, 2017) seasons \cite{Singh2014}.     
+In addition to this, the layover, shadow (SAR simulation) and forest masks (NDVI thresholding) are generated (3 m spatial resolution) to assess the potential uncertainty sources qualitatively. Moreover, the H-A-$\alpha$ decomposition and unsupervised Wishart classification techniques have been used to compare the scattering mechanisms in the study sites during snow-covered (Jan 8, 2016) and snow-free (Jun 8, 2017) seasons \cite{Singh2014}. In this workflow, all the processing tasks have been carried out using open-source tools and libraries which include the Sentinel Application Platform (SNAP), QGIS and Python.     
 
 \section{Results and Discussion}
 \label{sec:results}
@@ -157,10 +147,10 @@ Although the Jan 8, 2016 data was quad-pol, the data acquired on Jun 8, 2017, ha
 
 Moreover, the change in the scattering properties can also be verified with the corresponding H-$\alpha$ plane plots as shown in figures \ref{fig:wishart} (c) and (e) where the number of high entropy random anisotropic particles (snow indicator) increases while that of the medium entropy anisotropic particles (vegetation) decreases in the case of Jan 8, 2016. Furthermore, the non-feasible class represents the unclassified pixels occurring primarily due to the missing cross-pol SAR channels HV and VH. It can be seen that, for the summertime acquisition, the number of such unclassified pixels is much lower (16\%) than that of the snow-covered period (20\%). The plausible reason for this could be attributed to the complex scattering mechanisms exhibited by the partially snow-covered vegetation features or boulders. In order to test this, the quad-pol H-A-$\alpha$ decomposition was applied on the winter-time image and there were no unclassified pixels (figure \ref{fig:wishart} (d)). Thus, the presence of snow causes a substantial change of the scattering patterns in the study area resulting in significant uncertainty sources.
 
-\AfterEndEnvironment{figure}{\vspace{-2.5ex}}
+%\AfterEndEnvironment{figure}{\vspace{-2ex}}
 \begin{figure}[htb]
 \centering
-\includegraphics[scale=0.25]{All_Wishart.png}
+\includegraphics[width=8.5cm]{All_Wishart.png}
 \vspace{-2ex}
 \caption{\textbf{(a)} Wishart classified maps and zoomed views for Jan 8, 2016 and \textbf{(b)} Jun 8, 2017 \textbf{(c)} Dual-pole H-$\alpha$ plot, Jan \textbf{(d)} Quad-pole H-$\alpha$ plot, Jan and \textbf{(e)} Dual-pole H-$\alpha$ plot, Jun.}
 \label{fig:wishart}
@@ -174,10 +164,10 @@ The FSD has been estimated using the CPD based model described by \eqref{1} and 
 Here, the effect of different square and rectangular ensemble windows having step sizes of 10 and 1.19 respectively are tested. The subsequent graphical analyses over a 3x3 neighbourhood window surrounding the Dhundi site are shown in figures \ref{fig:fsd_map}{ (a) and (b)}. It can be seen that smaller window sizes result in either low mean FSD values ($\mu_f$) or high standard deviations ($\sigma_f$) which are essentially caused by the constraints enforced on $\phi_{CPD}$ and $\Delta{\zeta}$ in the FSD inversion model. In the Python implementation, $\Delta{Z_f} = 0 \, \forall \, \phi_{CPD} \le 0 \text{ or } \Delta{\zeta} \ge 1$ and therefore, larger window sizes are required to achieve suitable results which are in concordance with the ground truth data. Evidently, in case of the 5x5 ensemble window, $\mu_f \approx$ 0.006 cm (significantly low) and $\sigma_f \approx$ 0.02 cm, whereas for the 5x7 window, $\mu_f \approx$ 1.4 cm and $\sigma_f \approx$ 1.89 cm (quite high). As a result, determining an adequate window shape and size is an important task in this regard.
 
 The final FSD map produced from the 65x65 ensemble window ($\approx$0.38 km\textsuperscript{2} ground area) is depicted in figure \ref{fig:fsd_map} (c) wherein $\mu_f \approx$ 8.95 cm and $\sigma_f \approx$ 0.09 cm. The corresponding histogram for the whole study area is also shown in figure \ref{fig:fsd_map} (d). Since the in-situ FSD measurements before and after the satellite pass are 5 cm (Jan 7 evening) and 22 cm (Jan 8 morning) respectively, the estimated $\mu_f$ is justifiable. Although, larger window sizes were also providing sufficiently accurate results, in practical terms, averaging areas more than 0.4 km\textsuperscript{2} over such complex topographically varying terrains is unrealistic.
-\AfterEndEnvironment{figure}{\vspace{0.4ex}}
+
 \begin{figure}[htb]
 \centering
-\includegraphics[scale=0.25]{All.png}
+\includegraphics[width=8.5cm]{All.png}
 \vspace{-2ex}
 \caption{\textbf{(a)} Square window and \textbf{(b)} Rectangular window statistics \textbf{(c)} FSD Map and \textbf{(d)} FSD histogram.}
 \label{fig:fsd_map}
